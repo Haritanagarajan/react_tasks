@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 
 class App extends React.Component {  
-  componentWillMount() {  
+   constructor(props) {  
       super(props);  
       this.state = {hello: "JavaTpoint"};  
       this.changeState = this.changeState.bind(this)  
