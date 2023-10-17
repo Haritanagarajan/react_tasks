@@ -1,25 +1,47 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';  
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+class App extends React.Component {  
+   constructor(props) {  
+      super(props);  
+      this.state = {hello: "JavaTpoint"};  
+      this.changeState = this.changeState.bind(this)  
+   }    
+   render() {  
+      return (  
+         <div>  
+             <h1>ReactJS component's Lifecycle</h1>  
+             <h3>Hello {this.state.hello}</h3>  
+             <button onClick = {this.changeState}>Click Here!</button>          
+         </div>  
+      );  
+   }  
+   componentWillMount() {  
+      console.log('Component Will MOUNT!')  
+   }  
+   componentDidMount() {  
+      console.log('Component Did MOUNT!')  
+   }  
+   changeState(){  
+      this.setState({hello:"All!!- Its a great reactjs tutorial."});  
+   }  
+   componentWillReceiveProps(newProps) {      
+      console.log('Component Will Recieve Props!')  
+   }  
+   shouldComponentUpdate(newProps, newState) {  
+      return true;  
+   }  
+   componentWillUpdate(nextProps, nextState) {  
+      console.log('Component Will UPDATE!');  
+   }  
+   componentDidUpdate(prevProps, prevState) {  
+      console.log('Component Did UPDATE!')  
+   }  
+   componentWillUnmount() {  
+      console.log('Component Will UNMOUNT!')  
+   }  
+}  
+export default App;  
+ 
