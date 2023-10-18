@@ -37,8 +37,8 @@ class UserInfo extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.userDetails.map((user, index) => (
-                            <tr key={index}>
+                        {this.state.userDetails.map((user) => (
+                            <tr key={user.id}>
                                 <td>{user.userName}</td>
                                 <td>{user.userEmail}</td>
                                 <td>{user.userDesignation}</td>

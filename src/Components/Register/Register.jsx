@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import '../Styles/Register.css';
 import { withRouter } from '../Navigate/withRouter';
 
 class Register extends Component {
-
   constructor(props) {
     super(props);
-
     this.state = {
       userName: '',
       userEmail: '',
       userDesignation: '',
       userDob: '',
-      age: '', // Age state
+      age: '',
     };
   }
 
@@ -63,8 +60,8 @@ class Register extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Data sent to the server:', data);
-        this.props.navigate('/UserDetails')
+        console.log('Data sent to the Data.json:', data);
+        this.props.navigate('/UserInfo')
       })
       .catch((error) => {
         console.error('Error sending data to the server:', error);
