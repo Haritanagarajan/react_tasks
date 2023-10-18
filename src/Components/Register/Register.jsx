@@ -60,7 +60,7 @@ class Register extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Data sent to the Data.json:', data);
+        console.log('Data sent to the Data:', data);
         this.props.navigate('/UserInfo')
       })
       .catch((error) => {

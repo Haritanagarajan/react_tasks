@@ -31,6 +31,7 @@ class SpecificUserInfo extends Component {
 
     handleInputChange = (e) => {
         const { name, value } = e.target;
+    
         this.setState((prevState) => ({
             editableUserDetails: {
                 ...prevState.editableUserDetails,
@@ -49,7 +50,10 @@ class SpecificUserInfo extends Component {
         })
             .then((response) => response.json())
             .then((data) => {
-                this.setState({ userDetails: data, editableUserDetails: data });
+                this.setState({
+                    userDetails: data,
+                    editableUserDetails: data
+                });
                 this.toggleEditMode();
             })
             .catch((error) => {
