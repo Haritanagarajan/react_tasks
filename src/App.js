@@ -1,17 +1,19 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
-import Register from './Components/Register/Register';
-import UserInfo from './Components/UserInformatiom/UserInfo';
-import  SpecificUserInfo  from './Components/UserInformatiom/SpecificUserInfo';
+
+//Functional Components
+import UserInfoFunction from './Components/FunctionalComponents/UserInfoFunction';
+import RegisterFunction from './Components/FunctionalComponents/RegisterFunction';
+
 
 function App() {
   return (
     <>
       <Routes>
-        <Route exact path='/' element={<Register />} />
-        <Route exact path='/UserInfo' element={<UserInfo />} />
-        <Route exact path='/SpecificUserInfo/:id' element={<SpecificUserInfo />} />
+        <Route exact path='/RegisterFunction/:id' element={<RegisterFunction />} />
+        <Route exact path='/' element={<RegisterFunction />} />
+        <Route exact path='/UserInfoFunction' element={<UserInfoFunction />} />
       </Routes>
     </>
   );

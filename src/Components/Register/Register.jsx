@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from '../Navigate/withRouter';
-
+import '../Styles/Register.css';
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +42,6 @@ class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
     const userData = {
       userName: this.state.userName,
       userEmail: this.state.userEmail,

@@ -1,0 +1,22 @@
+.modules {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px 30px 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input {
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 8px;
+    width: 200%;
+    border-radius: 4px;
+}
+
+.registerdiv {
+    margin-left: -200px;
+}
