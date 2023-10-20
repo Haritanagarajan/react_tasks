@@ -118,65 +118,68 @@ const RegisterFunction = () => {
         }
     };
     return (
-        <div className='registerdiv d-flex justify-content-center'>
-            <form onSubmit={handleSubmit} className=''>
-                <div className='modules'>
-                    <label htmlFor="userName">User Name:</label>
-                    <input
-                        type="text"
-                        name="userName"
-                        id="userName"
-                        value={state.userName}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className='modules'>
-                    <label htmlFor="userEmail">User Email:</label>
-                    <input
-                        type="email"
-                        name="userEmail"
-                        id="userEmail"
-                        value={state.userEmail}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className='modules'>
-                    <label htmlFor="userDesignation">User Designation:</label>
-                    <input
-                        type="text"
-                        name="userDesignation"
-                        id="userDesignation"
-                        value={state.userDesignation}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className='modules'>
-                    <label htmlFor="userDob">User Date of Birth:</label>
-                    <input
-                        type="date"
-                        name="userDob"
-                        id="userDob"
-                        value={state.userDob}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className='modules'>
-                    <label htmlFor="age">
-                        Age:
+        <div className='text-white'>
+            <h3 className='d-flex justify-content-center mt-5'>User Forms</h3>
+            <div className='registerdiv d-flex justify-content-center'>
+                <form onSubmit={handleSubmit} className=''>
+                    <div className='modules'>
+                        <label htmlFor="userName">User Name:</label>
                         <input
                             type="text"
-                            name="age"
-                            value={state.age}
-                            readOnly
+                            name="userName"
+                            id="userName"
+                            value={state.userName}
+                            onChange={handleInputChange}
+                            required
                         />
-                    </label>
-                </div>
-                <button type="submit">{isAddingUser ? 'Add User' : 'Edit User'}</button>
-            </form>
+                    </div>
+                    <div className='modules'>
+                        <label htmlFor="userEmail">User Email:</label>
+                        <input
+                            type="email"
+                            name="userEmail"
+                            id="userEmail"
+                            value={state.userEmail}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                    <div className='modules'>
+                        <label htmlFor="userDesignation">User Designation:</label>
+                        <input
+                            type="text"
+                            name="userDesignation"
+                            id="userDesignation"
+                            value={state.userDesignation}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                    <div className='modules'>
+                        <label htmlFor="userDob">User Date of Birth:</label>
+                        <input
+                            type="date"
+                            name="userDob"
+                            id="userDob"
+                            value={state.userDob}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                    <div className='modules'>
+                        <label htmlFor="age">
+                            Age:
+                            <input
+                                type="text"
+                                name="age"
+                                value={state.age}
+                                readOnly
+                            />
+                        </label>
+                    </div>
+                    <button type="submit" className='registerfuncbutton'>{isAddingUser ? 'Add User' : 'Edit User'}</button>
+                </form>
+            </div>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 .modules {
     display: flex;
     flex-direction: column;
-    padding: 20px 10px 30px 20px;
+    padding: 30px 5px 5px 5px;
 }
 
 label {
@@ -19,4 +19,15 @@ input {
 
 .registerdiv {
     margin-left: -200px;
+}
+
+.registerfuncbutton {
+    border: none;
+    font-style: italic;
+    background-color: black;
+    color: white;
+}
+
+.bgregister {
+    background-color: red;
 }

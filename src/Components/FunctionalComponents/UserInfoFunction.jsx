@@ -3,7 +3,6 @@ import '../Styles/UserInfo.css';
 import { Link } from 'react-router-dom';
 
 const UserInfoFunction = () => {
-
     const [userDetails, setUserDetails] = useState([]);
 
     useEffect(() => {
@@ -16,37 +15,41 @@ const UserInfoFunction = () => {
                 console.error('Error fetching data:', error);
             });
     }, []);
-    
+
     return (
         <div className='container'>
-            {userDetails.map((user) => (
-                <div className='col'>
-                    <div className='card mt-5' style={{ width: 400 }}>
-                        <div className="card-body">
-                            <div className='row'>
-                                <div className='col-6'>
-                                    <p><strong>UserName:</strong> {user.userName}</p>
+            <div className='row'>
+                {userDetails.map((user) => (
+                    <div className='col-md-5' key={user.id}>
+                        <div className='card mt-5'>
+                            <div className="card-body">
+                                <div className='row'>
+                                    <div className='col-6'>
+                                        <p><strong>UserName:</strong> {user.userName}</p>
+                                    </div>
+                                    <div className='col-6'>
+                                        <p><strong>DateOfBirth:</strong>{user.userDob} </p>
+                                    </div>
                                 </div>
-                                <div className='col-6'>
-                                    <p><strong>UserEmail:</strong> {user.userEmail}</p>
+                                <div className='row'>
+                                    <div className='col-6'>
+                                        <p><strong>UserEmail:</strong>{user.userEmail} </p>
+                                        <p><strong>Age:</strong>{user.age} </p>
+                                    </div>
+                                    <div className='col-6'>
+                                        <p><strong>Designation:</strong> {user.userDesignation}</p>
+
+                                    </div>
                                 </div>
+                                <Link to={`/RegisterFunction/${user.id}`} style={{ textDecoration: 'none' }}>
+                                    <button className='btn btn-success mt-2'>Edit</button>
+                                </Link>
                             </div>
-                            <div className='row'>
-                                <div className='col-6'>
-                                    <p><strong>DateOfBirth:</strong> {user.userDob}</p>
-                                </div>
-                                <div className='col-6'>
-                                    <p><strong>UserDesignation:</strong> {user.userDesignation}</p>
-                                </div>
-                            </div>
-                            <Link to={`/RegisterFunction/${user.id}`} style={{ textDecoration: 'none' }}>
-                                <button className='btn btn-success mt-2'>Edit</button>
-                            </Link>
                         </div>
                     </div>
-                </div>
-            ))}
-        </div >
+                ))}
+            </div>
+        </div>
     );
 };
 
