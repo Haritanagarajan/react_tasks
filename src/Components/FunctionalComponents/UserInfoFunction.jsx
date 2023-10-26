@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import '../Styles/UserInfo.css';
+import UserCard from '../UserCard/UserCard';
 import { Link } from 'react-router-dom';
-
 const UserInfoFunction = () => {
     const [userDetails, setUserDetails] = useState([]);
 
@@ -20,33 +21,7 @@ const UserInfoFunction = () => {
         <div className='container'>
             <div className='row'>
                 {userDetails.map((user) => (
-                    <div className='col-md-5' key={user.id}>
-                        <div className='card mt-5'>
-                            <div className="card-body">
-                                <div className='row'>
-                                    <div className='col-6'>
-                                        <p><strong>UserName:</strong> {user.userName}</p>
-                                    </div>
-                                    <div className='col-6'>
-                                        <p><strong>DateOfBirth:</strong>{user.userDob} </p>
-                                    </div>
-                                </div>
-                                <div className='row'>
-                                    <div className='col-6'>
-                                        <p><strong>UserEmail:</strong>{user.userEmail} </p>
-                                        <p><strong>Age:</strong>{user.age} </p>
-                                    </div>
-                                    <div className='col-6'>
-                                        <p><strong>Designation:</strong> {user.userDesignation}</p>
-
-                                    </div>
-                                </div>
-                                <Link to={`/RegisterFunction/${user.id}`} style={{ textDecoration: 'none' }}>
-                                    <button className='btn btn-success mt-2'>Edit</button>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
+                    <UserCard user={user} key={user.id} />
                 ))}
             </div>
         </div>
@@ -54,3 +29,4 @@ const UserInfoFunction = () => {
 };
 
 export default UserInfoFunction;
+

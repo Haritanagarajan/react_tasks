@@ -1,7 +1,7 @@
 {
   "UserDetails": [
     {
-      "userName": "RanitaNagarajan",
+      "userName": "RanitaNagaraj",
       "userEmail": "ranita@gmail.com",
       "userDesignation": "PHP WORDPRESS",
       "userDob": "2004-02-04",
@@ -9,7 +9,7 @@
       "id": 1
     },
     {
-      "userName": "YaminiPriya",
+      "userName": "Yamini",
       "userEmail": "yamini@gmail.com",
       "userDesignation": ".NET FULLSTACK",
       "userDob": "2001-06-09",
@@ -17,11 +17,11 @@
       "id": 2
     },
     {
-      "userName": "Harita",
+      "userName": "HaritaNagaraja",
       "userEmail": "harita@123",
       "userDesignation": ".NET FULLSTACK",
-      "userDob": "2012-01-06",
-      "age": 11,
+      "userDob": "1997-11-13",
+      "age": 25,
       "id": 3
     },
     {
@@ -31,6 +31,22 @@
       "userDob": "2019-02-14",
       "age": 4,
       "id": 4
+    },
+    {
+      "userName": "Administrator",
+      "userEmail": "ranita@gmail.com",
+      "userDesignation": "PHP WORDPRESS",
+      "userDob": "2021-02-04",
+      "age": "21",
+      "id": 5
+    },
+    {
+      "userName": "AdministratorHarita",
+      "userEmail": "harish@gmail.com",
+      "userDesignation": ".NET FULLSTACK",
+      "userDob": "2006-02-10",
+      "age": 17,
+      "id": 6
     }
   ]
 }

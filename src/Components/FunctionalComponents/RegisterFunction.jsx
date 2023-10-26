@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import '../Styles/Register.css';
+import { Link } from 'react-router-dom';
+
 
 const RegisterFunction = () => {
-    const [isAddingUser, setIsAddingUser] = useState(true)
-
-    const [state, setState] = useState({
-        userName: '',
-        userEmail: '',
-        userDesignation: '',
-        userDob: '',
-        age: '',
-    });
-
     const navigate = useNavigate();
-
     const { id } = useParams();
+    const isEdit = new URLSearchParams(useLocation().search).get('isEdit');
+    const isView = new URLSearchParams(useLocation().search).get('isView');
+    const [isAddingUser, setIsAddingUser] = useState(true);
+    const [isViewOnly, setisViewOnly] = useState(false);
 
     useEffect(() => {
         if (id) {
@@ -34,8 +29,19 @@ const RegisterFunction = () => {
                 .catch((error) => {
                     console.error('Error fetching data:', error);
                 });
+            setisViewOnly(isView === 'true');
+        } else {
+            setisViewOnly(isEdit === 'true');
         }
-    }, [id]);
+    }, [id, isEdit, isView]);
+
+    const [state, setState] = useState({
+        userName: '',
+        userEmail: '',
+        userDesignation: '',
+        userDob: '',
+        age: '',
+    });
 
     const handleInputChange = (event) => {
 
@@ -57,24 +63,50 @@ const RegisterFunction = () => {
         }
     };
 
-    const calculateAge = (dateString) => {
+    const calculateAge = useMemo(() => {
+        return (dateString) => {
+            const today = new Date();
+            const birthDate = new Date(dateString);
+            const age = today.getFullYear() - birthDate.getFullYear();
+            if (today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate())) {
+                return age - 1;
+            }
+            return age;
+        };
+    }, []);
 
-        const today = new Date();
+    const handleSaveMode = (e) => {
+        e.preventDefault();
+        const userDataEdit = {
+            userName: state.userName,
+            userEmail: state.userEmail,
+            userDesignation: state.userDesignation,
+            userDob: state.userDob,
+            age: state.age,
+        };
 
-        const birthDate = new Date(dateString);
-
-        const age = today.getFullYear() - birthDate.getFullYear();
-
-        if (today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate())) {
-            return age - 1;
+        if (!isAddingUser) {
+            fetch(`http://localhost:3000/UserDetails/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userDataEdit),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log('Data sent to the Data:', data);
+                    navigate('/UserInfoFunction');
+                })
+                .catch((error) => {
+                    console.error('Error sending data to the server:', error);
+                });
+        } else {
+            console.log("Save permissions required")
         }
-        return age;
     };
-
     const handleSubmit = (event) => {
-
         event.preventDefault();
-
         const userData = {
             userName: state.userName,
             userEmail: state.userEmail,
@@ -99,29 +131,14 @@ const RegisterFunction = () => {
                     console.error('Error sending data to the server:', error);
                 });
         }
-        else {
-            fetch(`http://localhost:3000/UserDetails/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log('Data sent to the Data:', data);
-                    navigate('/UserInfoFunction');
-                })
-                .catch((error) => {
-                    console.error('Error sending data to the server:', error);
-                });
-        }
+
     };
+
     return (
         <div className='text-white'>
             <h3 className='d-flex justify-content-center mt-5'>User Forms</h3>
             <div className='registerdiv d-flex justify-content-center'>
-                <form onSubmit={handleSubmit} className=''>
+                <form onSubmit={handleSubmit}>
                     <div className='modules'>
                         <label htmlFor="userName">User Name:</label>
                         <input
@@ -131,6 +148,7 @@ const RegisterFunction = () => {
                             value={state.userName}
                             onChange={handleInputChange}
                             required
+                            readOnly={isViewOnly}
                         />
                     </div>
                     <div className='modules'>
@@ -142,6 +160,7 @@ const RegisterFunction = () => {
                             value={state.userEmail}
                             onChange={handleInputChange}
                             required
+                            readOnly={isViewOnly}
                         />
                     </div>
                     <div className='modules'>
@@ -153,6 +172,7 @@ const RegisterFunction = () => {
                             value={state.userDesignation}
                             onChange={handleInputChange}
                             required
+                            readOnly={isViewOnly}
                         />
                     </div>
                     <div className='modules'>
@@ -164,6 +184,7 @@ const RegisterFunction = () => {
                             value={state.userDob}
                             onChange={handleInputChange}
                             required
+                            readOnly={isViewOnly}
                         />
                     </div>
                     <div className='modules'>
@@ -177,7 +198,15 @@ const RegisterFunction = () => {
                             />
                         </label>
                     </div>
-                    <button type="submit" className='registerfuncbutton'>{isAddingUser ? 'Add User' : 'Edit User'}</button>
+                    {isAddingUser ? (
+                        <button type="submit" className='registerfuncbutton'>
+                            Add User
+                        </button>
+                    ) : (
+                        <button className='editmode btn' onClick={handleSaveMode}>
+                            Save
+                        </button>
+                    )}
                 </form>
             </div>
         </div>
@@ -185,3 +214,4 @@ const RegisterFunction = () => {
 };
 
 export default RegisterFunction;
+

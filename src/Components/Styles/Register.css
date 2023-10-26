@@ -31,3 +31,11 @@ input {
 .bgregister {
     background-color: red;
 }
+
+.editmode {
+    margin-top: 5px;
+    text-decoration: none;
+    color: black;
+    background-color: rgb(7, 208, 226);
+    font-style: italic;
+}
